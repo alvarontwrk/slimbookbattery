@@ -93,26 +93,34 @@ fi
 
 
 # This will be extended later depending on distro. Hence the trailing space.
-system_dependencies="tlp tlp-rdw libnotify-bin cron gobject-introspection "
+# libnotify-bin? libnotify
+# cron ? cronie, dcron, fcron
+system_dependencies="tlp tlp-rdw gobject-introspection "
 pkg_mgr_found="true"
 
 if [[ $(command -v apt-get) ]]; then
 	# Debian based distro.
-	system_dependencies+="libayatana-appindicator3-1"
+	system_dependencies+="cron libnotify-bin libayatana-appindicator3-1"
 	pkg_install_cmd="apt-get install -y"
 	pkg_search_cmd="dpkg-query -l"
 
 elif [[ $(command -v pacman) ]]; then
 	# Arch based distro.
-	system_dependencies+="libindicator-gtk3 libappindicator-gtk3"
+	system_dependencies+="cron libnotify-bin libindicator-gtk3 libappindicator-gtk3"
 	pkg_install_cmd="pacman -S"
 	pkg_search_cmd="pacman -Qs"
 
 elif [[ $(command -v yum) ]]; then
 	# RPM based distro.
-	system_dependencies+="libindicator-gtk3 libappindicator-gtk3"
+	system_dependencies+="cron libnotify-bin libindicator-gtk3 libappindicator-gtk3"
 	pkg_install_cmd="yum install"
 	pkg_search_cmd="yum list installed | grep"
+
+elif [[ $(command -v xbps-install)]]; then
+	# Void Linux
+	system_dependencies+="libnotify cronie libayatana-appindicator dmidecode"
+	pkg_install_cmd="xbps-install -y"
+	pkg_search_cmd="xbps-query -l | grep "^ii" | grep"
 
 else
 	pkg_mgr_found="false"
