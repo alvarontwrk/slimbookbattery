@@ -116,7 +116,7 @@ elif [[ $(command -v yum) ]]; then
 	pkg_install_cmd="yum install"
 	pkg_search_cmd="yum list installed | grep"
 
-elif [[ $(command -v xbps-install)]]; then
+elif [[ $(command -v xbps-install) ]]; then
 	# Void Linux
 	system_dependencies+="libnotify cronie libayatana-appindicator dmidecode"
 	pkg_install_cmd="xbps-install -y"
