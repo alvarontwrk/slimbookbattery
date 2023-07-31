@@ -187,6 +187,7 @@ mkdir /usr/share/slimbookbattery/custom
 mkdir /usr/share/slimbookbattery/default
 mkdir /usr/share/slimbookbattery/images
 mkdir /usr/share/slimbookbattery/src
+mkdir /usr/share/pixmaps
 print_info "...Done creating folder structure!\n"
 
 
