@@ -118,7 +118,7 @@ elif [[ $(command -v yum) ]]; then
 
 elif [[ $(command -v xbps-install) ]]; then
 	# Void Linux
-	system_dependencies+="libnotify cronie libayatana-appindicator dmidecode"
+	system_dependencies+="libnotify cronie libayatana-appindicator dmidecode xdpyinfo"
 	pkg_install_cmd="xbps-install -y"
 	pkg_search_cmd="xbps-query -l | grep "^ii" | grep"
 
